@@ -3,14 +3,12 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {   
-    // TODO: Korjaa se että kortin nostonappia voi painaa vielä yhden kerran
-    // sillon kun pakka on jo tyhjä
-    // Ratkaisu: Kirjoita kortin nostolle uusi funktio joka tsekkaa ennen ja
-    // jälkeen voiko kortin nostaa. 
     // TODO: Sliderin väri vaihtuu keltaiseksi kun < 1/3 pakasta jäljellä ja 
     // punaiseksi kun < 1/10
-    // TODO: Taustakuva jiiriin (kaikki mahdolliset kortit näkyvät ihan
-    // haalealla taustalla). 
+    // TODO: Taustakuva skaalautuu koko ruudun kokoiseksi (mutta ei nappien
+    // taakse)
+    // TODO: Undo (1 kerta)
+
 
     public CardController puzzleCard1;
     public CardController puzzleCard2;
@@ -69,11 +67,6 @@ public class GameController : MonoBehaviour
 
     public void DrawNewPuzzleCards()
     {
-        if (Deck.puzzleCards.Count <= 0)
-        {
-            drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
-            return;
-        }
         playPenSound();
         // If drawing first time puzzle cards
         if (drawStartingCardsButton.activeInHierarchy == true)
@@ -83,13 +76,27 @@ public class GameController : MonoBehaviour
             drawStartingCardsButton.SetActive(false);
             secondChanceButton.SetActive(true);
         }
-        puzzleCard1.UpdateCard(Deck.DrawPuzzleCard());
-        puzzleCard2.UpdateCard(Deck.DrawPuzzleCard());
+        puzzleCard1.UpdateCard(DrawPuzzleCard(puzzleCard1));
+        puzzleCard2.UpdateCard(DrawPuzzleCard(puzzleCard2));
+
+        remainingDeckSlider.GetComponent<Slider>().value = (float)Deck.puzzleCards.Count / (float)Deck.maxCards;
+    }
+
+    public Card DrawPuzzleCard(CardController cardObject)
+    {
         if (Deck.puzzleCards.Count <= 0)
         {
-            drawStartingCardsButton.GetComponent<Button>().interactable = false;
+            drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
+            cardObject.gameObject.SetActive(false);
         }
-        remainingDeckSlider.GetComponent<Slider>().value = (float)Deck.puzzleCards.Count / (float)Deck.maxCards;
+
+        Card card = Deck.DrawPuzzleCard();
+
+        if (Deck.puzzleCards.Count <= 0)
+        {
+            drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
+        }
+        return card;
     }
 
     public void drawSecondChance()

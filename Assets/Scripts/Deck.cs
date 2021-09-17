@@ -64,10 +64,17 @@ public static class Deck
 
     public static Card DrawPuzzleCard()
     {
-        Card card = Deck.puzzleCards.Last();
-        Deck.discardPile.Add(card);
-        Deck.puzzleCards.RemoveAt(puzzleCards.Count - 1);
-        return card;
+        if (Deck.puzzleCards.Count > 0)
+        {
+            Card card = Deck.puzzleCards.Last();
+            Deck.discardPile.Add(card);
+            Deck.puzzleCards.RemoveAt(puzzleCards.Count - 1);
+            return card;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public static Card DrawDiscardPileCard()

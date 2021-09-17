@@ -23,6 +23,11 @@ public class CardController : MonoBehaviour
 
     public void UpdateCard(Card new_card)
     {
+        if (new_card == null)
+        {
+            return;
+        }
+        transform.SetAsLastSibling();
         // delete old blocks
         foreach (GameObject block in blocks)
         {
@@ -53,6 +58,32 @@ public class CardController : MonoBehaviour
         foreach (GameObject block in blocks)
         {
             block.GetComponent<Image>().color = colors[colorCounter - 1];
+        }
+    }
+
+    public void HideCard()
+    {
+        Color currentColor = this.GetComponent<Image>().color;
+        if (currentColor.a <= 0.1f)
+        {
+            currentColor.a = 1;
+            SetAlpaForBlocks(1);
+        }
+        else
+        {
+            currentColor.a = 0.1f;
+            SetAlpaForBlocks(0.1f);
+        }
+        this.GetComponent<Image>().color = currentColor;
+    }
+
+    private void SetAlpaForBlocks(float alpha)
+    {
+        foreach (GameObject block in blocks)
+        {
+            Color currentColor = this.GetComponent<Image>().color;
+            currentColor.a = alpha;
+            block.GetComponent<Image>().color = currentColor;
         }
     }
 }
