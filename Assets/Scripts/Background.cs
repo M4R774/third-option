@@ -13,16 +13,16 @@ public class Background : MonoBehaviour
     public Vector3 scale = new Vector3(2, 2, 2);
 
     private Color[] colors = {
-            new Color(1, 0.20f, 0.20f,  .1f),
-            new Color(1, 10.12f, 0.20f, .1f),
-            new Color(1, 1, 0.20f,      .1f),
-            new Color(0.20f, 1, 0.20f,  .1f),
-            new Color(0.20f, 1, 1,      .1f),
-            new Color(0.12f, 0.31f, 1,  .1f),
-            new Color(1, 0.20f, 1,      .1f),
-            new Color(1, 1, 1,          .1f),
-            new Color(1, 1, 1,          .1f),
-            new Color(1, 1, 1,          .1f),
+            new Color(1, 0.20f, 0.20f,  .3f),
+            new Color(1, 10.12f, 0.20f, .3f),
+            new Color(1, 1, 0.20f,      .3f),
+            new Color(0.20f, 1, 0.20f,  .3f),
+            new Color(0.20f, 1, 1,      .3f),
+            new Color(0.12f, 0.31f, 1,  .3f),
+            new Color(1, 0.20f, 1,      .3f),
+            new Color(1, 1, 1,          .3f),
+            new Color(1, 1, 1,          .3f),
+            new Color(1, 1, 1,          .3f),
         };
 
     // Start is called before the first frame update
