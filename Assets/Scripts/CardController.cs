@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class CardController : MonoBehaviour
 {
     public Card card;
+    public GameObject otherCard;
     public List<GameObject> blocks;
     public GameObject blockPrefab;
     public int blockScale;
@@ -66,20 +67,24 @@ public class CardController : MonoBehaviour
     public void HideCard()
     {
         Color currentColor = this.GetComponent<Image>().color;
+        Color currentOtherColor = otherCard.GetComponent<Image>().color;
         if (currentColor.a <= 0.1f)
         {
             currentColor.a = 1;
-            SetAlpaForBlocks(1);
+            currentOtherColor.a = 1;
         }
         else
         {
             currentColor.a = 0.1f;
-            SetAlpaForBlocks(0.1f);
+            currentOtherColor.a = 0.1f;
         }
+        SetAlpaForBlocks(currentColor.a);
         this.GetComponent<Image>().color = currentColor;
+        otherCard.GetComponent<Image>().color = currentOtherColor;
+        otherCard.GetComponent<CardController>().SetAlpaForBlocks(currentOtherColor.a);
     }
 
-    private void SetAlpaForBlocks(float alpha)
+    public void SetAlpaForBlocks(float alpha)
     {
         foreach (GameObject block in blocks)
         {
