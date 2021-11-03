@@ -8,13 +8,17 @@ using UnityEngine.UI;
 
 public class Background : MonoBehaviour
 {
-    const int max_columns = 5;
+    public Camera uiCamera;
+    public RectTransform mParent;
+
+    const int gridSize = 5;
     public GameObject blockPrefab;
     public Vector3 scale = new Vector3(2, 2, 2);
+    public float resolutionScale;
 
     private Color[] colors = {
             new Color(1, 0.20f, 0.20f,  .3f),
-            new Color(1, 10.12f, 0.20f, .3f),
+            new Color(1, 0.5f, 0.20f,  .3f),
             new Color(1, 1, 0.20f,      .3f),
             new Color(0.20f, 1, 0.20f,  .3f),
             new Color(0.20f, 1, 1,      .3f),
@@ -28,15 +32,23 @@ public class Background : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resolutionScale = Screen.height / 720f;
+        int marginX = (int)(Screen.width * 0.25f);
+        int marginY = (int)(Screen.height * 0.1f);
+        int draw_area_width = (int)(Screen.width - (2*marginX));
+        int draw_area_height = (int)(Screen.height - (2 * marginY));
+        int distanceBetweenShapesX = (int)(draw_area_width / 5);
+        int distanceBetweenShapesY = (int)(draw_area_height / 6.3);
+
         int row = 0;
         int column = 0;
         float x_offset, y_offset;
         foreach (Card card in Deck.puzzleCards)
         {
-            x_offset = column*15*10-400;
-            y_offset = row*15*-10+600;
+            x_offset = column*distanceBetweenShapesX+ marginX;
+            y_offset = row*distanceBetweenShapesY+ marginY;
             CreateCard(card, x_offset, y_offset);
-            if (max_columns > column)
+            if (column < gridSize)
             {
                 column++;
             }
@@ -62,10 +74,11 @@ public class Background : MonoBehaviour
                 if (new_card.shape[x, y] == 1)
                 {
                     colorCounter++;
-                    Vector2 relativePosition = new Vector3(x * 15f * scale.x - 30f + x_offset, y * 15f * scale.y - 20f + y_offset);
+                    Vector2 relativePosition = new Vector3(x * 15f * scale.x * resolutionScale - 30f + x_offset, y * 15f * scale.y * resolutionScale - 20f + y_offset);
                     GameObject block = Instantiate(blockPrefab, transform.position, transform.rotation, transform);
                     block.transform.SetAsFirstSibling();
                     block.transform.localScale = scale;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(mParent, relativePosition, uiCamera, out relativePosition);
                     block.GetComponent<RectTransform>().anchoredPosition = relativePosition;
                     blocks.Add(block);
                 }

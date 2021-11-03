@@ -7,10 +7,11 @@ public class CardController : MonoBehaviour
     public Card card;
     public List<GameObject> blocks;
     public GameObject blockPrefab;
+    public int blockScale;
 
     private Color[] colors = {
             new Color(1, 0.20f, 0.20f),
-            new Color(1, 10.12f, 0.20f),
+            new Color(1, 0.5f, 0.20f),
             new Color(1, 1, 0.20f),
             new Color(0.20f, 1, 0.20f),
             new Color(0.20f, 1, 1),
@@ -45,8 +46,9 @@ public class CardController : MonoBehaviour
                 if (new_card.shape[x, y] == 1)
                 {
                     colorCounter++;
-                    Vector3 relativePosition = new Vector3(x*15f - 30f, y*15f - 20f, -0.1f);
+                    Vector3 relativePosition = new Vector3(x*15f*blockScale - 120f, y*15f*blockScale - 90f, -0.1f);
                     GameObject block = Instantiate(blockPrefab, transform.position, transform.rotation, transform);
+                    block.transform.localScale = block.transform.localScale * blockScale;
                     block.GetComponent<RectTransform>().anchoredPosition = new Vector2(relativePosition.x, relativePosition.y);
                     blocks.Add(block);
                 }
