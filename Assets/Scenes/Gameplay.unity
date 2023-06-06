@@ -181,7 +181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Starting cards
+  m_Text: STARTING CARDS
 --- !u!222 &106529169
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -354,7 +354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &501050827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.11372549, g: 0.4392157, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -544,7 +544,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 72
     m_FontStyle: 0
     m_BestFit: 1
@@ -556,7 +556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reset
+  m_Text: RESET
 --- !u!222 &515005864
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -612,6 +612,7 @@ MonoBehaviour:
   drawStartingCardsButton: {fileID: 1301665976}
   drawPuzzleCardsButton: {fileID: 487022480}
   secondChanceButton: {fileID: 1710900102}
+  secondChanceButtonText: {fileID: 1139103420}
   remainingDeckSlider: {fileID: 524915981}
   player1: {fileID: 824360329}
   player2: {fileID: 1500213053}
@@ -795,6 +796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524915982}
   - component: {fileID: 524915983}
+  - component: {fileID: 524915984}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -873,7 +875,32 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 524915984}
+        m_TargetAssemblyTypeName: sliderColor, Assembly-CSharp
+        m_MethodName: OnValueChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &524915984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524915981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b157fcc1d8033154d9e5451b043a6677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 1986881691}
 --- !u!1 &685605175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1056,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 1
@@ -1216,7 +1243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -1228,7 +1255,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next puzzle
+  m_Text: NEXT PUZZLE
 --- !u!222 &886171375
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1331,7 +1358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1073634806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1639,7 +1666,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -1651,7 +1678,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Third option
+  m_Text: THIRD OPTION
 --- !u!222 &1139103421
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2001,7 +2028,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d543d7a3fe6b6dc46b58bc1df7b5fea1, type: 3}
+    m_Font: {fileID: 12800000, guid: 917740da0dfca5a4a929ce9cf44bfd21, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 1

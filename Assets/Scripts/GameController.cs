@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {   
-    // TODO: Sliderin väri vaihtuu keltaiseksi kun < 1/3 pakasta jäljellä ja 
-    // punaiseksi kun < 1/10
-    // TODO: Taustakuva skaalautuu koko ruudun kokoiseksi (mutta ei nappien
-    // taakse)
     // TODO: Undo (1 kerta)
 
 
@@ -17,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject drawStartingCardsButton;
     public GameObject drawPuzzleCardsButton;
     public GameObject secondChanceButton;
+    public Text secondChanceButtonText;
     public GameObject remainingDeckSlider;
 
     public Text player1;
@@ -39,9 +36,9 @@ public class GameController : MonoBehaviour
         puzzleCard2.UpdateCard(Deck.DrawStartingCard());
         drawPuzzleCardsButton.GetComponent<Button>().interactable = true;
         numberOfPlayers++;
-        player2.text = "Player " + numberOfPlayers;
+        player2.text = "PLAYER " + numberOfPlayers;
         numberOfPlayers++;
-        player1.text = "Player " + numberOfPlayers;
+        player1.text = "PLAYER " + numberOfPlayers;
 
         if (Deck.startingCards.Count <= 0)
         {
@@ -59,6 +56,7 @@ public class GameController : MonoBehaviour
         secondChanceCard.gameObject.SetActive(false);
         puzzleCard1.gameObject.SetActive(false);
         puzzleCard2.gameObject.SetActive(false);
+        secondChanceButtonText.text = "THIRD OPTION";
         player1.text = "";
         player2.text = "";
         numberOfPlayers = 0;
@@ -75,6 +73,7 @@ public class GameController : MonoBehaviour
             player2.text = "";
             drawStartingCardsButton.SetActive(false);
             secondChanceButton.SetActive(true);
+            secondChanceButton.GetComponent<Button>().interactable = true;
         }
         puzzleCard1.UpdateCard(DrawPuzzleCard(puzzleCard1));
         puzzleCard2.UpdateCard(DrawPuzzleCard(puzzleCard2));
@@ -95,6 +94,7 @@ public class GameController : MonoBehaviour
         if (Deck.puzzleCards.Count <= 0)
         {
             drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
+            secondChanceButton.GetComponent<Button>().interactable = false;
         }
         return card;
     }
@@ -108,15 +108,21 @@ public class GameController : MonoBehaviour
         {
             secondChanceCard.gameObject.SetActive(false);
             drawPuzzleCardsButton.GetComponent<Button>().interactable = true;
-            secondChanceButton.GetComponentInChildren<Text>().text = "Second chance";
+            secondChanceButton.GetComponentInChildren<Text>().text = "THIRD OPTION";
+            if (Deck.puzzleCards.Count <= 0)
+            {
+                secondChanceButton.GetComponent<Button>().interactable = false;
+                drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
+            }
         }
         else // Second chance card is not visible
         {
             secondChanceCard.gameObject.SetActive(true);
             secondChanceCard.UpdateCard(Deck.DrawPuzzleCard());
             drawPuzzleCardsButton.GetComponent<Button>().interactable = false;
-            secondChanceButton.GetComponentInChildren<Text>().text = "Continue";
+            secondChanceButton.GetComponentInChildren<Text>().text = "CONTINUE";
         }
+        remainingDeckSlider.GetComponent<Slider>().value = (float)Deck.puzzleCards.Count / (float)Deck.maxCards;
     }
 
     private void playPenSound()

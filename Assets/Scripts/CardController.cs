@@ -57,10 +57,10 @@ public class CardController : MonoBehaviour
         }
 
         // Change color
-        this.GetComponent<Image>().color = colors[colorCounter - 1];
+        this.GetComponent<Image>().color = colors[colorCounter - 1]*1.5f + new Color(0,0,0,1);
         foreach (GameObject block in blocks)
         {
-            block.GetComponent<Image>().color = colors[colorCounter - 1];
+            block.GetComponent<Image>().color = colors[colorCounter - 1]*3.0f;
         }
     }
 
@@ -68,15 +68,15 @@ public class CardController : MonoBehaviour
     {
         Color currentColor = this.GetComponent<Image>().color;
         Color currentOtherColor = otherCard.GetComponent<Image>().color;
-        if (currentColor.a <= 0.1f)
+        if (currentColor.a <= 0.05f)
         {
             currentColor.a = 1;
             currentOtherColor.a = 1;
         }
         else
         {
-            currentColor.a = 0.1f;
-            currentOtherColor.a = 0.1f;
+            currentColor.a = 0.05f;
+            currentOtherColor.a = 0.05f;
         }
         SetAlpaForBlocks(currentColor.a);
         this.GetComponent<Image>().color = currentColor;
@@ -88,7 +88,7 @@ public class CardController : MonoBehaviour
     {
         foreach (GameObject block in blocks)
         {
-            Color currentColor = this.GetComponent<Image>().color;
+            Color currentColor = block.GetComponent<Image>().color;
             currentColor.a = alpha;
             block.GetComponent<Image>().color = currentColor;
         }
