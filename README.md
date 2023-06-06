@@ -1,5 +1,7 @@
-THIRD OPTION
-Tetris on pen and paper!
+![Gameplay](third-opiton-gif.gif)
+
+# THIRD OPTION
+## Tetris on pen and paper!
 
 In this puzzle game for 1 - 12 players, your goal is to fill a 9x9 grid as completely as possible with "Tetris shapes". Sit back, relax, and start drawing. 
 In this game, you are free to take as much as time to think, strategize and color your beautiful shapes. 
@@ -8,18 +10,18 @@ Every turn, two puzzle tile cards are revealed, and each player chooses one of t
 
 The game ends when all players have been eliminated, the deck of puzzle cards has run out, or a player has completely filled their grid. If someone has filled their grid, they win. If all players have been eliminated or the deck runs out of cards, the player with the fewest empty spaces wins.
 
-Features:
+## Features:
 
     Players: 1 - 12
     Playing time: 10 - 15 min
 
-What you need:
+## What you need:
 
     Pen and paper
 
-How to play: 
+## How to play: 
 
-Quick instructions: 
+### Quick instructions: 
 
 1. Draw 9x9 grid with central dot.
 2. Insert unique starting shape overlapping the dot.
@@ -32,7 +34,7 @@ Quick instructions:
 
 Winner: Least empty squares or first 100% filled grid.
 
-Full instructions:
+### Full instructions:
 
 1. Start by drawing a 9x9 square, with a small dot in the middle.
 
